@@ -28,6 +28,7 @@ Additional fields:
     user <user>, default user is "default"
     password <password>, default password is ""
     datetime_name <field name>, field with DateTime value
+    tag_name <field name>, field with tage value
     tz_offset <minutes>, timezone offset in minutes
     error_response_as_unrecoverable <true>, whatever to raise unrecoverable error when the response is non success. Default is "false"
     retryable_response_codes <array>, the list of retryable response code. Default is [503]
