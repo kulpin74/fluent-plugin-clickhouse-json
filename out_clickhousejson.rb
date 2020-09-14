@@ -31,6 +31,8 @@ module Fluent
         config_param :tz_offset, :integer, default: 0
         desc "Name of internal fluentd time field (if need to use)"
         config_param :datetime_name, :string, default: nil
+	desc "Name of internal fluentd tag field (if need to use)"
+        config_param :tag_name, :string, default: nil
         desc "Raise UnrecoverableError when the response is non success, 4xx/5xx"
         config_param :error_response_as_unrecoverable, :bool, default: false
         desc "The list of retryable response code"
@@ -83,6 +85,10 @@ module Fluent
         def format(tag, timestamp, record)
             if @datetime_name
                 record[@datetime_name] = timestamp + @tz_offset * 60
+            end
+		
+	    if @tag_name
+                record[@tag_name] = tag
             end
 
             return Yajl.dump(record) + "\n"
